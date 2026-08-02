@@ -31,9 +31,9 @@ IMAGEKIT_FOLDER=/nagar-sewa/reports  # where uploads land
 Only the private key is used server-side; `IMAGEKIT_PUBLIC_KEY` and
 `IMAGEKIT_URL_ENDPOINT` are there for the frontend.
 
-**Without a private key** the API falls back to writing files into `UPLOAD_DIR`
-(served at `http://localhost:5000/uploads/<filename>`) so a fresh clone runs with no
-setup. That fallback is single-instance only — configure ImageKit before deploying.
+`IMAGEKIT_PRIVATE_KEY` is required — the server refuses to boot without it, since
+report images have nowhere else to go. Nothing is written to the server's disk and
+the API serves no images itself, so instances stay stateless.
 
 The flow lives in [`src/services/storageService.js`](src/services/storageService.js):
 multer buffers the file in memory ([`middleware/upload.js`](src/middleware/upload.js)),
@@ -190,7 +190,7 @@ becomes a no-op.
 
 ```
 src/
-  app.js              express app: security, cors, static uploads, routes
+  app.js              express app: security, cors, docs, routes
   server.js           http server + mongo connection + realtime + shutdown
   config/             env, db connection, enums
   models/             User, Report, Comment, Vote, Repost, Notification
@@ -201,7 +201,6 @@ src/
   docs/               openapi spec + swagger ui mounting
   realtime/io.js      socket.io wiring (optional dependency)
   scripts/seed.js     demo data
-uploads/              local-fallback images, used only without ImageKit keys
 ```
 
 ## Notes on data design
