@@ -18,7 +18,7 @@ const reportSchema = new mongoose.Schema(
     category: { type: String, enum: REPORT_CATEGORIES, default: 'other', index: true },
 
     // Exactly one image per report, as per the reporting flow. Hosted on
-    // ImageKit; `provider: 'local'` documents pre-ImageKit and fallback uploads.
+    // ImageKit - the API stores what the upload returned, not a local path.
     image: {
       url: { type: String, required: true },
       thumbnailUrl: { type: String },
@@ -26,7 +26,6 @@ const reportSchema = new mongoose.Schema(
       // ImageKit identifiers, needed to delete or transform the asset later.
       fileId: { type: String },
       filePath: { type: String },
-      provider: { type: String, enum: ['imagekit', 'local'], default: 'local' },
       mimeType: { type: String },
       size: { type: Number },
     },

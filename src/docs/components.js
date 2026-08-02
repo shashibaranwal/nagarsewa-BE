@@ -108,8 +108,7 @@ const schemas = {
 
   ReportImage: {
     type: 'object',
-    description:
-      'Hosted on ImageKit. `provider: "local"` marks images written to the server disk, which happens only when ImageKit is not configured.',
+    description: 'Hosted on ImageKit; the API never serves report images itself.',
     properties: {
       url: {
         type: 'string',
@@ -133,7 +132,6 @@ const schemas = {
         nullable: true,
         example: '/nagar-sewa/reports/1725-ab12.jpg',
       },
-      provider: { type: 'string', enum: ['imagekit', 'local'], example: 'imagekit' },
       mimeType: { type: 'string', example: 'image/jpeg' },
       size: { type: 'integer', description: 'Bytes.', example: 483920 },
     },

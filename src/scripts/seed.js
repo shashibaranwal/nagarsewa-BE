@@ -12,7 +12,9 @@ const Repost = require('../models/Repost');
 const Notification = require('../models/Notification');
 const { ROLES, REPORT_STATUS } = require('../config/constants');
 
-const PLACEHOLDER_IMAGE = `${env.publicBaseUrl}/${env.uploadDir}/sample.jpg`;
+// Demo rows point at ImageKit's public sample asset - seeding does not upload
+// anything, so there is no file id to store or clean up.
+const PLACEHOLDER_IMAGE = 'https://ik.imagekit.io/demo/default-image.jpg';
 
 async function seed() {
   await connectDB();
@@ -123,7 +125,12 @@ async function seed() {
       title: seedData.title,
       description: seedData.description,
       category: seedData.category,
-      image: { url: PLACEHOLDER_IMAGE, filename: 'sample.jpg', mimeType: 'image/jpeg', size: 102400 },
+      image: {
+        url: PLACEHOLDER_IMAGE,
+        filename: 'default-image.jpg',
+        mimeType: 'image/jpeg',
+        size: 102400,
+      },
       location: {
         address: seedData.address,
         ward: seedData.ward,
