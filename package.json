@@ -1,0 +1,39 @@
+{
+  "name": "nagarsewa-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run --reporter=verbose",
+    "test:watch": "vitest --reporter=verbose",
+    "dev": "nodemon server.js",
+    "backfill:issues": "node scripts/backfillIssues.js",
+    "backfill:issue-descriptions": "node scripts/backfillIssueDescriptions.js",
+    "backfill:issue-scores": "node scripts/backfillIssueScores.js",
+    "migrate:events": "node scripts/migrateIssueEvents.js",
+    "seed:mock": "node scripts/seedMockReports.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@ngrok/ngrok": "^1.7.0",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.11.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.3",
+    "multer": "^2.4.0",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "supertest": "^7.3.0",
+    "vitest": "^5.0.3"
+  }
+}
